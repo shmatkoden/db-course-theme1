@@ -10,7 +10,7 @@ footer: "ECL 2.0 Licensed | Copyright © [2024] [Денис ШМАТКО]"
 **Виконав:** 
 
 *студент 2-го курсу, групи ІО-22*<span padding-right:5em></span> **[Денис ШМАТКО] [smatkoden@gmail.com]**
-
+*студент 2-го курсу, групи ІО-22*<span padding-right:5em></span> **[Ростислав КАРПЕНКО] [smatkoden@gmail.com]**
 
 **Керівник**
 
