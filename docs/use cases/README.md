@@ -102,6 +102,8 @@ actor Client as Client
 
 ## Сценарії використання
 
+### USER__CREATE_ACCOUNT
+    
 #### 1. ID ПРОЦЕСУ: ***USER__CREATE_ACCOUNT***
 
 ***НАЗВА:*** Реєстрація нового користувача
@@ -168,6 +170,8 @@ actor Client as Client
 
 </center>
 
+### USER__LOG_IN
+
 #### 2. ID ПРОЦЕСУ: ***USER__LOG_IN***
 
 ***НАЗВА:*** Вхід в обліковий запис
@@ -227,6 +231,7 @@ actor Client as Client
 
 </center>
 
+### CLIENT__CREATE_SURVEY
 
 #### 3. ID ПРОЦЕСУ: ***CLIENT__CREATE_SURVEY***
 ---
@@ -288,8 +293,8 @@ actor Client as Client
 
 </center>
 
-
-
+### CLIENT__EDIT_SURVEY
+---
 #### 4. ID ПРОЦЕСУ: ***CLIENT__EDIT_SURVEY***
 ***НАЗВА:*** Редагування опитування
 
@@ -340,6 +345,7 @@ actor Client as Client
 
 </center>
 
+### CLIENT__DELETE_SURVEY
 
 #### 5. ID ПРОЦЕСУ: ***CLIENT__DELETE_SURVEY***
 ***НАЗВА:*** Видалення опитування
@@ -387,6 +393,7 @@ actor Client as Client
 
 </center>
 
+### EXPERT__ANSWER_SURVEY
 
 #### 6. ID ПРОЦЕСУ: ***EXPERT__ANSWER_SURVEY***
 ***НАЗВА:*** Проходження опитування
@@ -442,6 +449,7 @@ actor Client as Client
 
 </center>
 
+### CLIENT__VIEW_SURVEY_RESULTS
 
 #### 7. ID ПРОЦЕСУ: ***CLIENT__VIEW_SURVEY_RESULTS***
 ***НАЗВА:*** Перегляд результатів опитування
@@ -483,6 +491,8 @@ actor Client as Client
 @enduml
 
 </center>
+
+### EXPERT__VIEW_AVAILABLE_SURVEYS
 
 #### 8. ID ПРОЦЕСУ: ***EXPERT__VIEW_AVAILABLE_SURVEYS***
 ***НАЗВА:*** Перегляд доступних опитувань
