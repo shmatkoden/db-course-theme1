@@ -11,13 +11,15 @@
 @startuml
 
     entity User
-    
     entity Survey
     entity Question
     entity Answer
+    entity User_Token
+    
 
     
     User "1,1"--"0,*" Answer
+    User "1,1"--"0,*" User_Token
     User "1,1"--"0,*" Survey
     Survey "1,1"*--"0,*" Question
     Answer "0,*"--*"1,1" Question
@@ -27,6 +29,12 @@
     entity User.nickname
     entity User.email
     entity User.password
+    
+   
+    entity user_token.id
+    entity user_token.token
+    entity user_token.create_time
+    entity user_token.valid
     
 
 
@@ -45,7 +53,11 @@
     entity Answer.text
 
     
-
+    
+    user_token.id --* User_Token
+    user_token.token --* User_Token
+    user_token.create_time --* User_Token
+    user_token.valid --* User_Token
 
     User.id --* User
     User.nickname --* User
@@ -90,6 +102,14 @@
             email: TEXT
             password: TEXT
         }
+        entity User_Token
+        {
+            id: INT
+            token: TEXT
+            create_time: DATETIME
+            valid: DATETIME
+        }
+        
     }
    
     
@@ -120,6 +140,8 @@
     
     User "1,1"--"0,*" Answer
     User "1,1"--"0,*" Survey
+    User "1,1"--"0,*" User_Token
+    
     Survey "1,1"*--"0,*" Question
     Answer "0,*"--*"1,1" Question
 
