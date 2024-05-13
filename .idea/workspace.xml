@@ -26,7 +26,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a9e522c7-a592-41a4-bca4-9e401f6b0d5b" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/docs/use cases/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/use cases/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/design/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/design/README.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -69,6 +70,10 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="WindowStateProjectService">
+    <state x="533" y="210" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1715601252977">
+      <screen x="0" y="0" width="1536" height="816" />
+    </state>
+    <state x="533" y="210" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1536.816@0.0.1536.816" timestamp="1715601252977" />
     <state x="431" y="137" key="search.everywhere.popup" timestamp="1710762415334">
       <screen x="0" y="0" width="1536" height="816" />
     </state>
