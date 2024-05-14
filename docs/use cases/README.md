@@ -16,6 +16,7 @@
 
     actor Expert
     actor Client
+    actor User
 
     usecase "USER__CREATE_ACCOUNT\nЗареєструватиcь" as USignup
     usecase "USER__LOG_IN\nАвторизуватись" as USignin
@@ -27,12 +28,13 @@
     usecase "EXPERT__VIEW_AVAILABLE_SURVEYS\nПерегляд\nдоступних\nопитувань" as ChAllSurvey
 
 
-        Expert -l-|> Client
+        Client -u-|> User
+        Expert -u-|> User
         Expert -u-> USurvey
-        Expert -r-> ESurvey
-        Client -u-> USignup
-        Client -l-> USignin
-        Client -d-> ChAllSurvey
+        Client -r-> ESurvey
+        User -u-> USignup
+        User -l-> USignin
+        Expert -d-> ChAllSurvey
         Client -d-> ChRSurvey
         Client -d-> СSurvey
         Client -d-> DSurvey
@@ -55,20 +57,17 @@ actor Client as Client
      usecase "USER__CREATE_ACCOUNT\nЗареєструвати" as SIGNUP
      usecase "USER__LOG_IN\nАвторизувати"  as SIGNIN
      usecase "CLIENT__CREATE_SURVEY\nСтворити опитування" as CREATTE
-     usecase "EXPERT__ANSWER_SURVEY\nПроходити опитування" as SURVEY_GO
      usecase "CLIENT__DELETE_SURVEY\nВидалити  опитування" as DELETE_SURVEY
      usecase " CLIENT__EDIT_SURVEY\nРедагувати опитування" as SEdit
      usecase "CLIENT__VIEW_SURVEY_RESULTS\nПереглянути результати" as SResults
-     usecase "EXPERT__VIEW_AVAILABLE_SURVEYS\nПереглянути доступних опитувань результати" as SERVEY_ALL
+     
 
-    Client -r-> UInteraction
-    UInteraction -r-> SIGNUP
-    UInteraction -d-> SIGNIN
+    Client -r-> User
+    User -r-> SIGNUP
+    User -d-> SIGNIN
     Client -d-> SEdit
     Client -l-> SResults
     Client -u-> CREATTE
-    Client -u-> SURVEY_GO
-    Client -u-> SERVEY_ALL
     Client -u-> DELETE_SURVEY
 
     

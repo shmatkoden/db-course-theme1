@@ -1,153 +1,198 @@
 # Проєктування бази даних
 
-## Mодель бізнес-об'єктів
 
-<center style="
-    border-radius:4px;
-    border: 1px solid #cfd7e6;
-    box-shadow: 0 1px 3px 0 rgba(89,105,129,.05), 0 1px 1px 0 rgba(0,0,0,.025);
-    padding: 1em;">
+
+## Модель бізнес-об'єктів 
+
 
 @startuml
 
-    entity User
-    entity Survey
-    entity Question
-    entity Answer
-    entity User_Token
-    
+  entity User 
+  entity User.nickname 
+  entity User.password 
+  entity User.email 
+  entity User.id 
 
-    
-    User "1,1"--"0,*" Answer
-    User "1,1"--"0,*" User_Token
-    User "1,1"--"0,*" Survey
-    Survey "1,1"*--"0,*" Question
-    Answer "0,*"--*"1,1" Question
-    
+  entity Skill  
+  entity Skill.id 
+  entity Skill.level 
 
-    entity User.id
-    entity User.nickname
-    entity User.email
-    entity User.password
-    
-   
-    entity user_token.id
-    entity user_token.token
-    entity user_token.create_time
-    entity user_token.valid
-    
+  entity Specialty 
+  entity Specialty.id 
+  entity Specialty.name 
 
+  entity Grant 
+  entity Grant.id 
+  entity Grant.create_time 
 
-    
+  entity Role  
+  entity Role.id 
+  entity Role.name 
+  
 
-    entity Survey.id
-    entity Survey.title
-    entity Survey.description
-    entity Survey.createdAt
+  entity Survey 
+  entity Survey.id 
+  entity Survey.title 
+  entity Survey.description 
+  entity Survey.createdAt 
 
-    entity Question.id
-    entity Question.text
-    entity Question.true
+  entity Question 
+  entity Question.id 
+  entity Question.true 
+  entity Question.text 
 
-    entity Answer.id
-    entity Answer.text
+  entity Answer  
+  entity Answer.id 
+  entity Answer.text 
+  
+  entity Action 
+  entity Action.id 
+  entity Action.date 
+  
+  entity State  
+  entity State.id 
+  entity State.name 
+  entity State.type
 
-    
-    
-    user_token.id --* User_Token
-    user_token.token --* User_Token
-    user_token.create_time --* User_Token
-    user_token.valid --* User_Token
+  User.nickname -d-* User 
+  User.password -d-* User
+  User.email -d-* User
+  User.id -d-* User
+  
 
-    User.id --* User
-    User.nickname --* User
-    User.email --* User
-    User.password --* User
+  User "1,1" -- "0,*" Grant
+  User "1,1" -- "0,*" Skill
 
+  Grant.id --* Grant
+  Grant.create_time --* Grant 
 
+  Grant "0,*" -- "1,1" Role
 
+  Skill.id -u-* Skill
+  Skill.level -u-* Skill
 
-    Survey *-- Survey.id
-    Survey *-- Survey.title
-    Survey *-- Survey.description
-    Survey *-- Survey.createdAt
+  Skill "0,*" -- "1,1" Specialty
 
-    Question *-- Question.id
-    Question *-- Question.text
-    Question *-- Question.true
+  Specialty.id -u-* Specialty
+  Specialty.name -u-* Specialty
 
-    Answer *-- Answer.id
-    Answer *-- Answer.text
+  Role.id -u-* Role
+  Role.name -u-* Role
 
+  Survey "0,1" -u- "0,*" Grant
+  
+  Survey.id -u-* Survey
+  Survey.title -u-* Survey
+  Survey.description -u-* Survey
+  Survey.createdAt -u-* Survey
 
+  Question "0,*" -u-* "1,1" Survey:Survey
+  
+  Question.id -u-* Question
+  Question.true -u-* Question 
+  Question.text -u-* Question
+
+  Question "1,1" -u- "0,*" Answer
+
+  Answer.id -u-* Answer
+  Answer.text -u-* Answer
+  
+  Answer "0,1" -u- "0,*" Grant
+  
+  Action.id -u-* Action
+  Action.date -u-* Action
+  
+  Action "0,*" -u- "1,1" Survey
+  Action "0,*" -u- "1,1" Grant
+  
+  State.id -u-* State
+  State.name -u-* State
+  State.type -u-* State
+  
+  State "1,1" -u- "0,*" Action
+  
 
 @enduml
-
-</center>
 
 ## ER-модель
-<center style="
-    border-radius:4px;
-    border: 1px solid #cfd7e6;
-    box-shadow: 0 1px 3px 0 rgba(89,105,129,.05), 0 1px 1px 0 rgba(0,0,0,.025);
-    padding: 1em;">
 
-@startuml
-
-    package UserControl {
-        entity User
-        {
-            id: INT
-            nickname: TEXT
-            email: TEXT
-            password: TEXT
-        }
-        entity User_Token
-        {
-            id: INT
-            token: TEXT
-            create_time: DATETIME
-            valid: DATETIME
-        }
-        
-    }
-   
-    
-    package SurveyControl {
-        entity Survey
-        {
-        id: INT
-        title: TEXT
-        description: TEXT
-        created: DATE
-        }
-
-        entity Answer
-        {
-            id: INT
-            text: TEXT
-        }
+@startuml 
  
-        entity Question
-        {
-            id: INT
-            text: TEXT
-            true: TEXT
-        }
+  entity User <<ENTITY>> { 
+    id:INT 
+    password:TEXT 
+    nickname:TEXT 
+    email:TEXT
     
-        
-    }
+  }
+
+  entity Grant <<ENTITY>> { 
+    id:INT 
+    create_time:Date 
+  } 
+
+  entity Role <<ENTITY>> { 
+    id:INT 
+    name:TEXT
+  }
+
+  entity Specialty <<ENTITY>> { 
+    id:INT 
+    name:TEXT 
+  } 
+
+  entity Skill <<ENTITY>>{ 
+    id:INT 
+    level:INT
+  }
+
+  entity Answer <<ENTITY>> { 
+    id:INT 
+    text:TEXT 
+  }
+
+  entity Survey <<ENTITY>>{ 
+    id:INT 
+    title:TEXT 
+    description:TEXT 
+    createdAt: DATETIME
+  } 
+
+  entity Question <<ENTITY>>{ 
+    id:INT 
+    true:TEXT 
+    text:TEXT 
+  }
+
+  entity Action <<ENTITY>>{ 
+    id:INT 
+    date:Date 
+  }
+
+  entity State <<ENTITY>>{ 
+    id:INT 
+    type:TEXT 
+    text:TEXT 
+  }
+  
+  
+
+  Skill "0,*" -l-> "1,1" User 
+  Skill "0,*" -r-> "1,1" Specialty 
     
-    User "1,1"--"0,*" Answer
-    User "1,1"--"0,*" Survey
-    User "1,1"--"0,*" User_Token
-    
-    Survey "1,1"*--"0,*" Question
-    Answer "0,*"--*"1,1" Question
+  Grant "0,*" -u-> "1,1" User 
+  Grant "0,*" -r-> "1,1" Role 
+  Grant "0,*" -l-> "0,1" Answer 
+  Grant "0,*" -l-> "0,1" Survey
+  Question "0,*" -d-> "1,1" Survey: pool 
+  Answer "0,*" -l-> "1,1" Question 
+  Action "0,*" -u-> "1,1" Survey
+  Action "0,*" -u-> "1,1" Grant
+  Action "0,*" -r-> "1,1" State
+  
+
 
 @enduml
 
-</center>
-
 ## Реляційна схема
-![relation-diagram](./images/version2.png)
+![relation-diagram](./images/version7.png)
