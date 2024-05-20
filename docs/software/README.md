@@ -147,6 +147,46 @@ CREATE TABLE IF NOT EXISTS survey_db.State (
   PRIMARY KEY (id)
 ) ENGINE = InnoDB;
 
+CREATE TABLE IF NOT EXISTS survey_db.Action (
+  id INT NOT NULL AUTO_INCREMENT,
+  date DATE ,
+  grant_id INT,
+  state_id INT,
+  PRIMARY KEY (id),
+  INDEX fk_Action_Grant_idx (grant_id ASC),
+  INDEX fk_Action_State_idx (state_id ASC),
+  CONSTRAINT fk_Action_Grant
+      FOREIGN KEY (grant_id)
+      REFERENCES survey_db.Grant (id)
+      ON DELETE NO ACTION
+      ON UPDATE NO ACTION,
+  CONSTRAINT fk_Action_State
+      FOREIGN KEY (state_id)
+      REFERENCES survey_db.State (id)
+      ON DELETE NO ACTION
+      ON UPDATE NO ACTION,
+  ) ENGINE = InnoDB;
+
+CREATE TABLE IF NOT EXISTS survey_db.Skill (
+  id INT NOT NULL AUTO_INCREMENT,
+  level INT,
+  speciality_id INT,
+  user_id INT,
+  PRIMARY KEY (id),
+  INDEX fk_Skill_Speciality_idx (speciality_id ASC),
+  INDEX fk_Skill_User_idx (user_id ASC),
+
+  CONSTRAINT fk_Action_Speciality
+        FOREIGN KEY (speciality_id)
+        REFERENCES survey_db.Speciality (id)
+        ON DELETE NO ACTION
+        ON UPDATE NO ACTION,
+  CONSTRAINT fk_Action_User
+        FOREIGN KEY (user_id)
+        REFERENCES survey_db.Users (id)
+        ON DELETE NO ACTION
+        ON UPDATE NO ACTION,
+  ) ENGINE = InnoDB;
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
