@@ -191,5 +191,155 @@ SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 ```
-- RESTfull сервіс для управління даними
+## RESTfull сервіс для управління даними
 
+- Для локального запуску нашої програми використовуємо технологію OpenServer, що створює локальний сервер для нашої прогарми
+
+
+- Для зв'язку з базою даних використовуємо файл db.php
+
+```
+<?php
+
+return mysqli_connect('localhost','root','','survey_db');
+
+```
+
+- Для реєстрації використовуємо файл registration.php в якому дані відправляються в базу даних в таблицю Users
+
+```
+
+<?php
+
+if($_SERVER['REQUEST_METHOD'] == "POST")
+{
+    $db = require_once 'db.php';
+    $data = json_decode(file_get_contents('php://input'),true);
+
+    $nick = $data['nick'];
+    $mail = $data['mail'];
+    $password = $data['password'];
+
+
+    $query = "INSERT INTO survey_db.Users (nickname, email, password,speciality_id,level) 
+                     VALUES ('$nick', '$mail', '$password', 1, 2)";
+
+    $res = mysqli_query($db,$query);
+
+
+    if (!empty($res))
+    {
+        echo json_encode("Registry");
+    }
+}
+else{
+    echo json_encode('Not Found');
+}
+```
+
+- Для авторизації використовуємо файл login.php в якому порівнюється nickname та password
+
+```
+<?php
+
+if($_SERVER['REQUEST_METHOD'] == "POST")
+{
+    $db = require_once 'db.php';
+    $data = json_decode(file_get_contents('php://input'),true);
+
+    $nick = $data['nick'];
+    $password = $data['password'];
+
+
+    $query = "SELECT * FROM Users WHERE nickname = '$nick' LIMIT 1";
+
+    $res = mysqli_query($db,$query);
+
+    $result = mysqli_fetch_assoc($res);
+
+    $userPassword = $result['password'];
+
+    if (!empty($result))
+    {
+        if ($userPassword == $password){
+            echo json_encode('You have successfully completed the authorization');
+        }
+    }
+    echo json_encode("Authorization failed");
+}
+else{
+    echo json_encode('Not Found');
+}
+```
+
+- Для пошуку опитування за id використовуємо файл findsurvey.php
+
+```
+<?php
+
+if($_SERVER['REQUEST_METHOD'] == "GET")
+{
+    $db = require_once 'db.php';
+    $surveyId = $_GET['id'];
+
+    $query = "SELECT * FROM Survey WHERE id = $surveyId";
+
+    $res = mysqli_query($db,$query);
+
+    $result = mysqli_fetch_assoc($res);
+
+    echo json_encode($result);
+}
+else{
+    echo json_encode('Не знайдено');
+}
+```
+
+- Для редагування опитування використовуємо файл editsurvey.php
+
+```
+<?php
+if($_SERVER['REQUEST_METHOD'] == "PUT")
+{
+    $db = require_once 'db.php';
+    $data = json_decode(file_get_contents('php://input'),true);
+
+    $id = $data['id'];
+    $title = $data['title'];
+    $description = $data['description'];
+
+
+    $query = "UPDATE Survey 
+             SET title = '$title', description = '$description' 
+             WHERE id = $id";
+
+    $res = mysqli_query($db,$query);
+
+
+    echo json_encode('Edit was ok');
+}
+else{
+    echo json_encode('Not Found');
+}
+```
+
+- Для перегляду всіх опитувань використовуємо файл findallsurvey.php
+
+```
+<?php
+
+if($_SERVER['REQUEST_METHOD'] == "GET")
+{
+    $db = require_once 'db.php';
+
+    $query = "SELECT * FROM Survey";
+
+    $res = mysqli_query($db,$query);
+    for ($data = []; $row = mysqli_fetch_assoc($res); $data[] = $row);
+
+    echo json_encode($data);
+}
+else{
+    echo json_encode('Not Found');
+}
+```

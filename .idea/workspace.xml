@@ -27,7 +27,9 @@
   <component name="ChangeListManager">
     <list default="true" id="a9e522c7-a592-41a4-bca4-9e401f6b0d5b" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/software/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/software/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/test/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/test/README.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -44,7 +46,7 @@
   </component>
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../SITECAMPO" />
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -70,10 +72,18 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="533" y="210" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1715601252977">
+    <state x="533" y="210" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1716633279997">
       <screen x="0" y="0" width="1536" height="816" />
     </state>
-    <state x="533" y="210" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1536.816@0.0.1536.816" timestamp="1715601252977" />
+    <state x="533" y="210" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1536.816@0.0.1536.816" timestamp="1716633279997" />
+    <state x="549" y="163" key="FileChooserDialogImpl" timestamp="1716634282858">
+      <screen x="0" y="0" width="1536" height="816" />
+    </state>
+    <state x="549" y="163" key="FileChooserDialogImpl/0.0.1536.816@0.0.1536.816" timestamp="1716634282858" />
+    <state x="479" y="112" width="578" height="592" key="find.popup" timestamp="1716639487847">
+      <screen x="0" y="0" width="1536" height="816" />
+    </state>
+    <state x="479" y="112" width="578" height="592" key="find.popup/0.0.1536.816@0.0.1536.816" timestamp="1716639487847" />
     <state x="431" y="137" key="search.everywhere.popup" timestamp="1710762415334">
       <screen x="0" y="0" width="1536" height="816" />
     </state>
